@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CaanLoad</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">CL</span><div><strong>CaanLoad</strong><small>can负载计算器</small></div></div>
+    <div class="toolbar">
+      <button id="reset" class="quiet" title="恢复初始通用场景">恢复初始场景</button>
+      <button id="add-bus" class="quiet" title="添加 CAN 总线">＋ 总线</button>
+      <button id="add-device" class="primary" title="添加自定义设备">＋ 自定义设备</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="intro"><div><div class="eyebrow">CAN BUS CAPACITY PLANNING</div><h1>规划每一条总线的收发预算</h1><p>按线上的实际帧数计算；TX 与 RX 共用同一物理带宽。修改速率、帧格式或频率后立即重算。</p></div><div class="legend"><span><i class="dot tx"></i>发送</span><span><i class="dot rx"></i>接收</span><span><i class="dot headroom"></i>剩余</span></div></div>
+
+    <section class="layout">
+      <div class="main-column">
+        <div class="section-heading"><div><h2>总线</h2><p>速率单位为 Mbps；CAN FD+BRS 同时使用仲裁段和数据段速率。</p></div><span id="bus-count" class="count"></span></div>
+        <div id="buses" class="bus-list"></div>
+
+        <div class="section-heading devices-heading"><div><h2>设备与帧</h2><p>同一行的 TX/RX 频率和帧数分别设置。组控协议的 TX 帧只按组计数。</p></div><span id="device-count" class="count"></span></div>
+        <div class="device-tools"><label>添加协议预设 <select id="preset"><option value="">选择设备或帧组…</option></select></label><button id="add-preset" class="quiet">添加预设</button></div>
+        <div id="devices" class="device-list"></div>
+      </div>
+      <aside class="side-column">
+        <section class="panel"><div class="panel-heading"><h2>汇总</h2><span>全双向总线占用</span></div><div id="summary"></div></section>
+        <section class="panel method"><h2>口径与建议</h2><div class="formula">占用率 = Σ(帧时间 × 频率 × 每次帧数)</div><p>TX/RX 共用带宽；帧/ms 为 Σ(频率 × 每次帧数) ÷ 1000。奇偶交替示例：1 kHz 循环、两种包各 500 Hz、每次 1 帧，平均 TX 为 1 帧/ms；瞬时峰值取决于实际发送相位。</p><p>按真实发送事件填写帧数，参考详细公式与边界见 README。</p><div class="threshold"><b>80%</b><span>建议将保守占用控制在此规划线以下；它是经验提示，不是协议硬上限。</span></div></section>
+      </aside>
+    </section>
+    <footer>参考：<a href="https://bbs.robomaster.com/article/557395" target="_blank" rel="noopener">RoboMaster 原文</a> · <a href="https://github.com/CaFeZn/CAN-FDCAN-Load-Calculator" target="_blank" rel="noopener">作者计算器与文章快照</a> · <a href="https://github.com/torvalds/linux/blob/master/include/linux/can/length.h" target="_blank" rel="noopener">Linux CAN 帧位数定义</a> · <a href="https://xrobot-org.github.io/docs/perf/perf-can" target="_blank" rel="noopener">XRobot 实测</a><br>初始场景为通用演示配置；设备协议预设的频率可修改，实际通信周期应以设备手册或抓包为准。</footer>
+  </main>
+  <script src="model.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
