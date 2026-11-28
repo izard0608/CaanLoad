@@ -53,7 +53,7 @@ const CAN = (() => {
     dmMit: { name: '达妙 MIT · 握手回包', tx: frame(1000), rx: frame(1000), rxMode: 'handshake' },
     gm6020: { name: 'DJI GM6020 · 固定频率回包', tx: frame(1000), rx: frame(1000) },
     m3508: { name: 'DJI 3508 · 一拖四 / 固定频率回包', tx: frame(1000, 1), rx: frame(1000, 4) },
-    lk: { name: 'LK 电机 · 固定频率回包', tx: frame(1000), rx: frame(1000) },
+    lk: { name: 'LK 电机 · 握手回包', tx: frame(1000), rx: frame(1000), rxMode: 'handshake' },
     fdBoard: { name: 'CAN FD 节点 · 16 B', tx: frame(1000, 1, 16), rx: frame(1000, 1, 16) },
     custom: { name: '自定义设备', tx: frame(), rx: frame() }
   };

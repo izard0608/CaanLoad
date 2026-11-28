@@ -74,4 +74,4 @@ FD 有 BRS：t = A / Rnom + P / Rdata
 
 ## 初始配置与预设
 
-初始场景包含三路示例总线：CAN1、CAN2 为 1 Mbps 经典 CAN，CAN3 为 1 Mbps、无 BRS 的 CAN FD。每条总线包含两个 100 Hz 示例节点。协议预设包括 DJI 3508 一拖四、DJI GM6020、达妙 MIT 握手回包、LK 固定频率回包和 CAN FD 16 字节节点；所有预设的频率和帧数都可以编辑。
+初始场景包含三路示例总线：CAN1、CAN2 为 1 Mbps 经典 CAN，CAN3 为 1 Mbps、无 BRS 的 CAN FD。每条总线包含两个 100 Hz 示例节点。协议预设包括 DJI 3508 一拖四、DJI GM6020、达妙 MIT 握手回包、LK 握手回包和 CAN FD 16 字节节点；所有预设的频率和帧数都可以编辑。
